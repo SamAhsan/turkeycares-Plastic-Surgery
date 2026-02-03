@@ -2795,22 +2795,18 @@ body {
 
     .hero {
         min-height: auto;
-        height: 55vh;
+        height: auto;
+        aspect-ratio: 3 / 4;
         padding: 0 1.5rem;
         padding-top: 1.5rem;
-        margin-top: 80px;
+        margin-top: 100px;
         align-items: flex-start;
         justify-content: flex-start;
-        border-radius: 16px;
-        margin-left: 1rem;
-        margin-right: 1rem;
-        overflow: hidden;
     }
 
     .hero-image {
         object-fit: cover;
         object-position: center center;
-        border-radius: 16px;
     }
 
     .hero-content {
