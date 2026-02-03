@@ -242,17 +242,23 @@ const flipCards = document.querySelectorAll('.flip-card');
 
 // iOS-specific flip card handler
 function flipCardOnIOS(card, shouldFlip) {
+    // Force style recalculation on iOS before changing class
+    void card.offsetHeight;
+
     if (shouldFlip) {
         card.classList.add('flipped');
-        // Force style recalculation on iOS
-        card.style.transform = 'translateZ(0)';
-        void card.offsetHeight; // trigger reflow
+        // Use webkit transform for iOS
+        card.style.webkitTransform = 'rotateY(180deg) translateZ(0)';
+        card.style.transform = 'rotateY(180deg) translateZ(0)';
     } else {
         card.classList.remove('flipped');
-        card.style.transform = 'translateZ(0)';
-        void card.offsetHeight; // trigger reflow
+        // Reset to initial position
+        card.style.webkitTransform = 'rotateY(0deg) translateZ(0)';
+        card.style.transform = 'rotateY(0deg) translateZ(0)';
     }
-    console.log('iOS flip:', card, shouldFlip);
+
+    // Force another reflow after transform
+    void card.offsetHeight;
 }
 
 const flipObserver = new IntersectionObserver((entries) => {
